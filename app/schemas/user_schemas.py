@@ -7,7 +7,7 @@ class UserRequestSchema:
     def get(self):
         return self.namespace.model("User",
         {
-            "user_id": fields.String(max_length=250, required=True)
+            "user_id": fields.String(max_length=250)
         }
         )
     def userforgenre(self):

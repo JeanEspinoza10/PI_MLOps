@@ -7,7 +7,7 @@ from app.controllers.user_controller import UserController
 # Documentación con la herramienta Swagger
 user_data_ns = api.namespace(
     name = "User",
-    description = "",
+    description = "Requerimiento",
     path = "/user"
 )
 
@@ -16,17 +16,16 @@ request_schema = UserRequestSchema(user_data_ns)
 
 
 # Creando las rutas
-@user_data_ns.route("data")
+@user_data_ns.route("/data/<string:id>")
 class User(Resource):
-    @user_data_ns.expect(request_schema.get())
-    def get(self):
+    def get(self,id):
         controller = UserController()
-        return controller.get(request.json)
+        return controller.get(id)
 
 
 # Ruta para userforagenre
 
-@user_data_ns.route("forgenre")
+@user_data_ns.route("/forgenre")
 class User(Resource):
     @user_data_ns.expect(request_schema.userforgenre())
     def get(self):
