@@ -30,3 +30,18 @@ class UsersReviews:
             return documents, client
         except Exception as e:
             raise Exception("Error en la clase UsersReviews:" + str(e))    
+
+    def BuscarAll(self):
+        try:
+            # Conexion a la base de datos
+            database, client = self.connection.database("ProyectosoyHenry")
+            collection = database["users_review"]
+
+
+            # Realizar la busqueda en la coleccion y obtener el documento.
+            documents = list(collection.find())
+
+          
+            return documents, client
+        except Exception as e:
+            raise Exception("Error en la clase UsersReviews:" + str(e))

@@ -16,9 +16,8 @@ request_schema = ReviewsRequestSchema(reviews_ns)
 
 
 # Creando las rutas
-@reviews_ns.route("")
+@reviews_ns.route("/<string:fecha_inicio>/<string:fecha_fin>")
 class User(Resource):
-    @reviews_ns.expect(request_schema.count())
-    def get(self):
+    def get(self,fecha_inicio,fecha_fin):
         controller = Reviews()
-        return controller.count(request.json)
+        return controller.count(fecha_inicio,fecha_fin)

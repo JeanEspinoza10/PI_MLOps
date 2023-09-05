@@ -1,4 +1,4 @@
-import os
+import re
 from flask import jsonify
 from app.utils.users_items import UsersItems
 from app.utils.steam_games import SteamGames
@@ -60,8 +60,14 @@ class UserController:
             return {
                 "error": f"Error en user_controller: {e}"
             }
-    def get_userforgenre(data):
+
+
+    def get_userforgenre(self):
+        """
+        Obtiene 
+        """
         try:
-            pass
+           pass        
+
         except Exception as e:
             pass

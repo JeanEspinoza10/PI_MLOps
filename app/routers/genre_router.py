@@ -16,9 +16,8 @@ request_schema = GenreRequestSchema(genre_ns)
 
 
 # Creando las rutas
-@genre_ns.route("")
+@genre_ns.route("<string:genero>")
 class User(Resource):
-    @genre_ns.expect(request_schema.get())
-    def get(self):
+    def get(self,genero):
         controller = Genre()
-        return controller.get(request.json)
+        return controller.get(genero)

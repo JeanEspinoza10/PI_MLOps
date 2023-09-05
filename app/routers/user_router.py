@@ -27,7 +27,6 @@ class User(Resource):
 
 @user_data_ns.route("/forgenre")
 class User(Resource):
-    @user_data_ns.expect(request_schema.userforgenre())
     def get(self):
         controller = UserController()
-        return controller.get_userforgenre(request.json)
+        return controller.get_userforgenre()
