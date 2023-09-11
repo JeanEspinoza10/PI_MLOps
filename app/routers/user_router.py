@@ -7,7 +7,7 @@ from app.controllers.user_controller import UserController
 # Documentación con la herramienta Swagger
 user_data_ns = api.namespace(
     name = "User",
-    description = "Requerimiento",
+    description = "",
     path = "/user"
 )
 
