@@ -7,6 +7,8 @@ El presente repositorio muestra una solución al problema planteado en el siguie
 * Seleccionar un modelo de predicción basado en nuestros datos.
 * Desarrollar una NLP según las indicaciones del repositorio de GitHub.
 
+![Texto alternativo](img\p1.jpg)
+
 # Descripción
 Para cualquier proceso que involucre datos, debemos comenzar primero con una exploración de los datos para poder obtener información sobre las variables, las relaciones entre ellas, la calidad de los datos, etc.
 
