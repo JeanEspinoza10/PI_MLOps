@@ -37,3 +37,35 @@ Nuestra base de datos, tendrá la siguiente estructura:
 
 ## API Rest
 <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/api-settings.png" alt="api-settings"/>
+
+El desarrollo de esta servicio esta desarrollo en el framework FLASK. A su vez, esta API tendra los siguientes endpoints, los cuales todos son metodos GET.
+* def userdata( User_id : str ): Debe devolver cantidad de dinero gastado por el usuario, el porcentaje de recomendación en base a reviews.recommend y cantidad de items.
+
+* def countreviews( YYYY-MM-DD y YYYY-MM-DD : str ): Cantidad de usuarios que realizaron reviews entre las fechas dadas y, el porcentaje de recomendación de los mismos en base a reviews.recommend.
+
+* def genre( género : str ): Devuelve el puesto en el que se encuentra un género sobre el ranking de los mismos analizado bajo la columna PlayTimeForever.
+
+* def userforgenre( género : str ): Top 5 de usuarios con más horas de juego en el género dado, con su URL (del user) y user_id.
+
+* def developer( desarrollador : str ): Cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora.
+
+* def sentiment_analysis( año : int ): Según el año de lanzamiento, se devuelve una lista con la cantidad de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento.
+
+## Machine Learning
+<img width="64" height="64" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-machine-learning-robotics-flaticons-lineal-color-flat-icons.png" alt="external-machine-learning-robotics-flaticons-lineal-color-flat-icons"/>
+
+Para este sección seleccionamos la ténica de Collaborative Filtering, teniendo como antecedente la documentación https://www.aprendemachinelearning.com/sistemas-de-recomendacion/ .
+Posteriormente a la elección del algoritmo, debemos exponerlo en API con los siguientes endpoints:
+* def recomendacion_juego( id de producto ): Ingresando el id de producto, deberíamos recibir una lista con 5 juegos recomendados similares al ingresado.
+Si es un sistema de recomendación user-item:
+
+* def recomendacion_usuario( id de usuario ): Ingresando el id de un usuario, deberíamos recibir una lista con 5 juegos recomendados para dicho usuario.
+
+
+# Habilidades Desarrolladas
+En este proyecto, he aplicado y desarrollado las siguientes habilidades y tecnologías:
+* Desarrollo de __API REST__ con el framework __FLASK__.
+* Aplicación del patron de diseño __MVC__ (modelo vista controlador).
+* Utilización de herramientas de control de versiones como __Git__.
+* Aplicación de __Base de datos No Relacionales__ - __MongoDB__.
+* Despliegue del servicio en __Render__.
