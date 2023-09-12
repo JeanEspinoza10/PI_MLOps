@@ -34,3 +34,6 @@ Nuestra base de datos, tendrá la siguiente estructura:
 2. Nombre de nuestra Colección: Cada nombre del archivo json será el de la colección.
 3. El archivo json tiene los documentos para cada colección.
 
+
+## API Rest
+<img width="50" height="50" src="https://img.icons8.com/ios-filled/50/api-settings.png" alt="api-settings"/>
