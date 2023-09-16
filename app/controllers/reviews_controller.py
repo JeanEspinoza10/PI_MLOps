@@ -53,27 +53,27 @@ class Reviews:
                             }
 
                         
-                        return result
+                        return result, 200
 
 
                     else:
                         return {
                         "error": f"Result: Sin documentos en nuestra base de datos"
-                        } 
+                        },200
                                            
                 else:
                     return {
                     "error": f"Error en reviewscounts: Colocar la fecha_inicio < fecha_fin"
-                    }    
+                    },400
 
             else:
                 return {
                 "error": f"Error en reviewscounts: Colocar las fechas en el formato YYYY-MM-DD"
-            }    
+            },400
              
 
 
         except Exception as e:
             return {
                 "error": f"Error en reviewscounts: {e}"
-            }
+            }, 400
