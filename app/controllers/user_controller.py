@@ -1,8 +1,11 @@
 import re
+import time
 from flask import jsonify
 from app.utils.users_items import UsersItems
 from app.utils.steam_games import SteamGames
 from app.utils.users_reviews import UsersReviews
+
+
 
 class UserController:
     def __init__(self):
@@ -13,7 +16,8 @@ class UserController:
         try:
             # Obtenemos el documento en formato de diccionario
             documents, client = self.usersItems.BuscarID(id)
-
+            # Registra el tiempo de inicio
+            inicio = time.time()
             if documents:
                 documents = documents[0]            
                 # Obteniendo los valores necesarios para realizar la respuesta.
@@ -47,7 +51,12 @@ class UserController:
                     "Total de items": count_items,
                     "Porcentaje de Recomendado": porcentaje_true
                 }
-                
+                # Registra el tiempo de finalización
+                fin = time.time()
+                # Calcula el tiempo transcurrido
+                tiempo_transcurrido = fin - inicio
+
+                print(f"La consulta o código tomó {tiempo_transcurrido} segundos.")
             else:
                 result = {
                     "result": "No hay items relacionados con el usuario_id en nuestra base de datos."
