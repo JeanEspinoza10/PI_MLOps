@@ -73,6 +73,8 @@ class Genre:
         try:
             df_usuario = dataUsergenre()
             df_agrupado = dataAgrupadogenre()
+            
+            
 
             if not (df_agrupado.empty and df_usuario.empty):
                 valor_genres = genero.lower()

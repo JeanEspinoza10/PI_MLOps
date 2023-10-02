@@ -8,7 +8,7 @@ def dataUsergenre():
     db, client = connection.database('ProyectosoyHenry')
 
     
-    coleccion_userForGenre_usuario = db['UserForGenre_usuario']
+    coleccion_userForGenre_usuario = db[' UserForGenre_usuario']
 
     # Consultar todos los documentos en la colección
     
@@ -23,6 +23,7 @@ def dataUsergenre():
     df_usuario  = pd.DataFrame(documentos_usuario)
 
     return df_usuario
+
 
 
 def dataAgrupadogenre():
