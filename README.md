@@ -24,7 +24,7 @@ Al finalizar esta etapa, obtenemos los siguientes archivos en formato *.json, lo
 * corregido_output_steam_games.json
 * corregido_australian_users_items.json __corregir despues
 
-## Base de Datos
+## Base de Datos - Cambiarlo por GoogleDrive
 <img width="48" height="48" src="https://img.icons8.com/color/48/mongodb.png" alt="mongodb"/>
 
 Para trabajar de una manera eficiente a la hora de realizar las consultas, opte por la opción de utilizar una base de datos no relacional. 

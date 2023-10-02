@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 class ConnectionDB:
-    def __init__(self) -> None:
+    def __init__(self):
         # Carga las variables de entorno desde el archivo .env
         load_dotenv()
 
@@ -24,7 +24,7 @@ class ConnectionDB:
             name: nombre de la base de datos
         
         Returns:
-            list: el obejeto de conexion a la base de datos
+            list: el objeto de conexion a la base de datos
         """
         db = self.client[name]
         return db, self.client

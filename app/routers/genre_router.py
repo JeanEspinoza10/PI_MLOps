@@ -15,9 +15,28 @@ request_schema = GenreRequestSchema(genre_ns)
 
 
 
-# Creando las rutas
-@genre_ns.route("<string:genero>")
+# Creando la ruta para el end point 
+'''
+def PlayTimeGenre( genero : str ): Debe devolver año con mas horas jugadas para dicho género.
+'''
+@genre_ns.route("/PlayTimeGenre/<string:genero>")
+class PlayTime(Resource):
+    def get(self,genero):
+        '''
+        Debe devolver año con mas horas jugadas para dicho género.
+        '''
+        controller = Genre()
+        return controller.playtime(genero)
+
+
+'''
+def UserForGenre( genero : str ): Debe devolver el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año.
+'''
+@genre_ns.route("/UserForGenre/<string:genero>")
 class User(Resource):
     def get(self,genero):
+        '''
+        Debe devolver el usuario que acumula más horas jugadas para el género dado.
+        '''
         controller = Genre()
-        return controller.get(genero)
+        return controller.user(genero)
