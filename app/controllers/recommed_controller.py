@@ -1,5 +1,7 @@
 import gc
+import pandas as pd
 from app.utils.recommenduser import dataRecommend
+
 
 class Recommend:
     def __init__(self):
@@ -14,8 +16,9 @@ class Recommend:
             try:
                  # Intenta convertir la cadena a un entero
                 entero = int(anio)
-                # Si la conversión es exitosa, retorna True
-                
+                # Obtener
+                df_items = pd.read_json("app/prediccion/dataframe_items.json")
+
                 # Filtrar el DataFrame para obtener los registros donde 'posted_year' sea igual a 2022
                 registros_buscados = self.dataframe[self.dataframe['posted_year'] == entero].reset_index(drop=True)
                 
@@ -30,18 +33,30 @@ class Recommend:
                 
                     # JSON respuesta
                     data = []
-                
+                    respuesta = []
                     for element in result:   
                         data.append(element["item_id"])
                     
+                    # Utilizar loc para buscar por 'id' y obtener 'app_name'
+                    resultado = df_items.loc[df_items['id'] == int(data[1]), 'app_name'].to_dict()
+                    
+                    for element in data:
+                        resultado = df_items.loc[df_items['id'] == int(element), 'app_name'].to_dict()
+                        if resultado:
+                            for key, value in resultado.items():
+                                respuesta.append(value)
+                        else:
+                            respuesta.append(element)
+
+
                     # Forzar la recolección de basura para liberar memoria
                     gc.collect()
                     return {
                         "Result": 
                                 {
-                                    "Puesto 1" : f"Item_id: {data[0]}", 
-                                    "Puesto 2" : f"Item_id: {data[1]}",
-                                    "Puesto 3" : f"Item_id: {data[2]}",
+                                    "Puesto 1" : f"Item: {respuesta[0]}", 
+                                    "Puesto 2" : f"Item: {respuesta[1]}",
+                                    "Puesto 3" : f"Item: {respuesta[2]}",
                                 },
                         "Code": 200                    
                         }, 200
@@ -77,8 +92,11 @@ class Recommend:
             try:
                  # Intenta convertir la cadena a un entero
                 entero = int(anio)
-                # Si la conversión es exitosa, retorna True
                 
+
+                df_items = pd.read_json("app/prediccion/dataframe_items.json")
+                
+
                 # Filtrar el DataFrame para obtener los registros donde 'posted_year' sea igual a 2022
                 registros_buscados = self.dataframe[self.dataframe['posted_year'] == entero].reset_index(drop=True)
                 
@@ -93,18 +111,30 @@ class Recommend:
                 
                     # JSON respuesta
                     data = []
-                
-                    for element in result:   
+                    respuesta = []
+                    for element in result:
                         data.append(element["item_id"])
                     
+                    # Utilizar loc para buscar por 'id' y obtener 'app_name'
+                    resultado = df_items.loc[df_items['id'] == int(data[1]), 'app_name'].to_dict()
+                    
+                    for element in data:
+                        resultado = df_items.loc[df_items['id'] == int(element), 'app_name'].to_dict()
+                        if resultado:
+                            for key, value in resultado.items():
+                                respuesta.append(value)
+                        else:
+                            respuesta.append(element)
+
+
                     # Forzar la recolección de basura para liberar memoria
                     gc.collect()
                     return {
                         "Result": 
                                 {
-                                    "Puesto 1" : f"Item_id: {data[0]}", 
-                                    "Puesto 2" : f"Item_id: {data[1]}",
-                                    "Puesto 3" : f"Item_id: {data[2]}",
+                                    "Puesto 1" : f"Item: {respuesta[0]}", 
+                                    "Puesto 2" : f"Item: {respuesta[1]}",
+                                    "Puesto 3" : f"Item: {respuesta[2]}",
                                 },
                         "Code": 200                    
                         }, 200
