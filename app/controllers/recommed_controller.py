@@ -1,3 +1,4 @@
+import gc
 from app.utils.recommenduser import dataRecommend
 
 class Recommend:
@@ -33,7 +34,8 @@ class Recommend:
                     for element in result:   
                         data.append(element["item_id"])
                     
-                    
+                    # Forzar la recolección de basura para liberar memoria
+                    gc.collect()
                     return {
                         "Result": 
                                 {
@@ -95,7 +97,8 @@ class Recommend:
                     for element in result:   
                         data.append(element["item_id"])
                     
-                    
+                    # Forzar la recolección de basura para liberar memoria
+                    gc.collect()
                     return {
                         "Result": 
                                 {

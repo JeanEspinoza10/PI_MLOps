@@ -1,3 +1,4 @@
+import gc
 from app.utils.sentiment import dataSentiment
 
 class SentimentAnalysis:
@@ -28,7 +29,8 @@ class SentimentAnalysis:
                         'Positive': result_sentiment.get(('pos', 2), 0)
                     }
 
-
+                    # Forzar la recolección de basura para liberar memoria
+                    gc.collect()
                     return {
                         "Result": f"{sentiment_dict}",
                         "Code": 200

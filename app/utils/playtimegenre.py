@@ -13,6 +13,7 @@ def dataPlaytime():
     # Consultar todos los documentos en la colección
     resultados = coleccion.find()
 
+    
 
     # Convertir los resultados en una lista de diccionarios
     documentos = list(resultados)
@@ -20,8 +21,11 @@ def dataPlaytime():
 
     # Crear un DataFrame a partir de la lista de diccionarios
     df = pd.DataFrame(documentos)
-
+    
+  
     return df
+
+
     
 
 

@@ -1,14 +1,12 @@
-
-from flask import jsonify
+import gc
 from app.utils.playtimegenre import dataPlaytime
 from app.utils.userforgenre import dataUsergenre, dataAgrupadogenre
 
 
 class Genre:
     def __init__(self):
-        self.dataframePlaytime = dataPlaytime() 
-        self.Usuario = dataUsergenre()
-        self.items = dataAgrupadogenre()
+        
+        self.usuario = 'usuario'
 
     def playtime(self,genero):
         '''
@@ -18,8 +16,8 @@ class Genre:
         try:
             # Obteniendo el dataframe correspondiente para el end point
             
-            df = self.dataframePlaytime
-
+            df = dataPlaytime()
+           
             
             # Normalizando el dato de genero
             lower_genre = genero.lower()
@@ -43,6 +41,8 @@ class Genre:
                 # Convertir la Serie a una lista
                 respuesta = time_registro.tolist()
                 
+                # Forzar la recolección de basura para liberar memoria
+                gc.collect()
                 
                 # La respuesta esta: [fecha , time play forever]
                 return {
@@ -71,8 +71,8 @@ class Genre:
         return: Json  {"Usuario con más horas jugadas para Género X" : us213ndjss09sdf, "Horas jugadas":[{Año: 2013, Horas: 203}, {Año: 2012, Horas: 100}, {Año: 2011, Horas: 23}]}
         '''
         try:
-            df_usuario = self.Usuario
-            df_agrupado = self.items
+            df_usuario = dataUsergenre()
+            df_agrupado = dataAgrupadogenre()
 
             if not (df_agrupado.empty and df_usuario.empty):
                 valor_genres = genero.lower()
@@ -108,7 +108,8 @@ class Genre:
                     json_respuesta["Horas"] = element["playtime_forever"]
                     data_respuesta.append(json_respuesta)
 
-                
+                # Forzar la recolección de basura para liberar memoria
+                gc.collect()
                 return {
                     'Result': {
                         f"Usuario con más horas jugadas para Género {respuesta[0]['genres']}": respuesta[0]["user_id"],

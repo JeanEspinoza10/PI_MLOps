@@ -37,6 +37,7 @@ def dataAgrupadogenre():
     
     items = coleccion_UserForGenre_items.find()
 
+    
     # Convertir los resultados en una lista de diccionarios
     
     documentos_items = list(items)

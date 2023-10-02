@@ -1,7 +1,7 @@
 
 import pandas as pd
 import numpy as np
-import os
+import gc
 
 class Prediccion:
     def __init__(self):
@@ -40,7 +40,8 @@ class Prediccion:
                             
                             respuesta.append(app_name[0])
 
-
+                    # Forzar la recolección de basura para liberar memoria
+                    gc.collect()
                     return {
                         "Result": {
                         

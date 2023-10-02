@@ -14,6 +14,8 @@ def dataSentiment():
     
     recommend = coleccion_recommendUser.find()
 
+    
+
     # Convertir los resultados en una lista de diccionarios
     
     documentos_recommend = list(recommend)
