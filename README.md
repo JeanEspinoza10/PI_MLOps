@@ -18,13 +18,16 @@ Para este proyecto, los datos se encuentran en el siguiente enlace:
 ## Análisis Exploratorio
 <img width="48" height="48" src="https://img.icons8.com/color/48/google-colab.png" alt="google-colab"/>
 
-Para esta etapa utilizaremos Google Colab para realizar las transformaciones, completar y exportar los datos. En el siguiente enlace [Google Colab](https://colab.research.google.com/drive/1Hh-jz6DX86fWewBpI8b735thQJtpp2hf?usp=drive_link), esta el archivo donde detallo el paso a paso de las transformaciones realizadas en los datos para nuestro caso específico.
-Al finalizar esta etapa, obtenemos los siguientes archivos en formato *.json, los cuales utilizaremos posteriormente, estos tienen el nombre de:
-* corregido_user_reviews.json
-* corregido_output_steam_games.json
-* corregido_australian_users_items.json __corregir despues
+Para esta etapa utilizaremos Google Colab para realizar las transformaciones, completar y exportar los datos. En el siguiente enlace https://drive.google.com/drive/folders/1O0db6IIFGkzCB18xvikUeVXUrTFAFhXQ?usp=drive_link, esta el archivo donde detallo el paso a paso de las transformaciones realizadas en los datos para nuestro casos casos requeridos. Por cada endpoint tenemos un archivo:
+- UserForGenre.ipynb
+- Recomendacion.ipynb
+. Sentiment_analysis.ipynb
+- UserRecommend.ipynb
+- PlayTimeGenre.ipynb
 
-## Base de Datos - Cambiarlo por GoogleDrive
+Tener en cuenta que de cada archivo *.ipynb obtenemos sus respectivos json para luego cargarlo en nuestra base de datos.
+
+## Base de Datos 
 <img width="48" height="48" src="https://img.icons8.com/color/48/mongodb.png" alt="mongodb"/>
 
 Para trabajar de una manera eficiente a la hora de realizar las consultas, opte por la opción de utilizar una base de datos no relacional. 
@@ -39,25 +42,29 @@ Nuestra base de datos, tendrá la siguiente estructura:
 <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/api-settings.png" alt="api-settings"/>
 
 El desarrollo de esta servicio esta desarrollo en el framework FLASK. A su vez, esta API tendra los siguientes endpoints, los cuales todos son metodos GET.
-* def userdata( User_id : str ): Debe devolver cantidad de dinero gastado por el usuario, el porcentaje de recomendación en base a reviews.recommend y cantidad de items.
+* def PlayTimeGenre( genero : str ): Debe devolver año con mas horas jugadas para dicho género.
+Ejemplo de retorno: {"Año de lanzamiento con más horas jugadas para Género X" : 2013}
 
-* def countreviews( YYYY-MM-DD y YYYY-MM-DD : str ): Cantidad de usuarios que realizaron reviews entre las fechas dadas y, el porcentaje de recomendación de los mismos en base a reviews.recommend.
+* def UserForGenre( genero : str ): Debe devolver el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año.
+Ejemplo de retorno: {"Usuario con más horas jugadas para Género X" : us213ndjss09sdf, "Horas jugadas":[{Año: 2013, Horas: 203}, {Año: 2012, Horas: 100}, {Año: 2011, Horas: 23}]}
 
-* def genre( género : str ): Devuelve el puesto en el que se encuentra un género sobre el ranking de los mismos analizado bajo la columna PlayTimeForever.
+* def UsersRecommend( año : int ): Devuelve el top 3 de juegos MÁS recomendados por usuarios para el año dado. (reviews.recommend = True y comentarios positivos/neutrales)
+Ejemplo de retorno: [{"Puesto 1" : X}, {"Puesto 2" : Y},{"Puesto 3" : Z}]
 
-* def userforgenre( género : str ): Top 5 de usuarios con más horas de juego en el género dado, con su URL (del user) y user_id.
-
-* def developer( desarrollador : str ): Cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora.
+* def UsersNotRecommend( año : int ): Devuelve el top 3 de juegos MENOS recomendados por usuarios para el año dado. (reviews.recommend = False y comentarios negativos)
+Ejemplo de retorno: [{"Puesto 1" : X}, {"Puesto 2" : Y},{"Puesto 3" : Z}]
 
 * def sentiment_analysis( año : int ): Según el año de lanzamiento, se devuelve una lista con la cantidad de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento.
+
+Un sistema de recomendación user-item:
+
+* def recomendacion_usuario( id de usuario ): Ingresando el id de un usuario, deberíamos recibir una lista con 5 juegos recomendados para dicho usuario.
 
 ## Machine Learning
 <img width="64" height="64" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-machine-learning-robotics-flaticons-lineal-color-flat-icons.png" alt="external-machine-learning-robotics-flaticons-lineal-color-flat-icons"/>
 
 Para este sección seleccionamos la ténica de Collaborative Filtering, teniendo como antecedente la documentación https://www.aprendemachinelearning.com/sistemas-de-recomendacion/ .
 Posteriormente a la elección del algoritmo, debemos exponerlo en API con los siguientes endpoints:
-* def recomendacion_juego( id de producto ): Ingresando el id de producto, deberíamos recibir una lista con 5 juegos recomendados similares al ingresado.
-Si es un sistema de recomendación user-item:
 
 * def recomendacion_usuario( id de usuario ): Ingresando el id de un usuario, deberíamos recibir una lista con 5 juegos recomendados para dicho usuario.
 
@@ -65,7 +72,17 @@ Si es un sistema de recomendación user-item:
 # Habilidades Desarrolladas
 En este proyecto, he aplicado y desarrollado las siguientes habilidades y tecnologías:
 * Desarrollo de __API REST__ con el framework __FLASK__.
+* Programación orientada a objetos - __Python__.
 * Aplicación del patron de diseño __MVC__ (modelo vista controlador).
 * Utilización de herramientas de control de versiones como __Git__.
 * Aplicación de __Base de datos No Relacionales__ - __MongoDB__.
 * Despliegue del servicio en __Render__.
+
+
+# Desafios
+
+Durante el desarrollo de este proyecto, nos enfrentamos a varios desafíos, pero uno de los más destacados fue la gestión de grandes volúmenes de datos al desplegar la API REST en un servicio gratuito.
+
+Es importante tener en cuenta que este proyecto se centra en la creación de un Producto Mínimo Viable (MVP, por sus siglas en inglés), lo que nos permitió trabajar con datos parciales. En lugar de cargar estos archivos JSON en el repositorio, optamos por configurar la base de datos para evitar sobrecargar el servicio de implementación.
+
+Esta estrategia nos permitió mantener un rendimiento óptimo en nuestro servicio en línea mientras desarrollábamos el MVP, al mismo tiempo que nos preparaba para futuras expansiones y escalabilidad.
