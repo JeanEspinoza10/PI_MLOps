@@ -2,7 +2,7 @@ from app import api
 from flask_restx import Resource
 from flask import request
 from app.controllers.recommed_controller import Recommend
-from app.schemas.recommend_schemas import RecommendRequestSchema
+
 
 # Documentación con la herramienta Swagger
 recommend_ns = api.namespace(
@@ -11,7 +11,7 @@ recommend_ns = api.namespace(
     path = "/recommend"
 )
 
-request_schema = RecommendRequestSchema(recommend_ns)
+
 
 # Crenado la ruta para los endpoint
 '''
