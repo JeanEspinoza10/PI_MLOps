@@ -86,3 +86,7 @@ Durante el desarrollo de este proyecto, nos enfrentamos a varios desafíos, pero
 Es importante tener en cuenta que este proyecto se centra en la creación de un Producto Mínimo Viable (MVP, por sus siglas en inglés), lo que nos permitió trabajar con datos parciales. En lugar de cargar estos archivos JSON en el repositorio, optamos por configurar la base de datos para evitar sobrecargar el servicio de implementación.
 
 Esta estrategia nos permitió mantener un rendimiento óptimo en nuestro servicio en línea mientras desarrollábamos el MVP, al mismo tiempo que nos preparaba para futuras expansiones y escalabilidad.
+
+# Despliegue Producción
+
+En el siguiente link esta desplegado los endpoints de este proyecto: https://proyectomlops-bf4j.onrender.com/
