@@ -87,6 +87,3 @@ Es importante tener en cuenta que este proyecto se centra en la creación de un 
 
 Esta estrategia nos permitió mantener un rendimiento óptimo en nuestro servicio en línea mientras desarrollábamos el MVP, al mismo tiempo que nos preparaba para futuras expansiones y escalabilidad.
 
-# Despliegue Producción
-
-En el siguiente link esta desplegado los endpoints de este proyecto: https://proyectomlops-bf4j.onrender.com/
